@@ -1,4 +1,4 @@
-# 🧪 Test Cases — Book Store App
+#  Test Cases — Book Store App
 
 | ID | Feature Area | Title | Pre-conditions | Steps | Expected Result | Post-conditions | Priority | Severity | Evidence |
 |----|--------------|-------|----------------|-------|----------------|-----------------|----------|----------|----------|
