@@ -1,16 +1,42 @@
-#  Defect Log — Book Store App
+# Phase 2 – Defect Log  
+**Project:** Online Bookstore Management System  
+**Prepared by:** QA Team  
+**Date:** November 2025  
+**Version:** 1.0  
 
-| ID            | Summary                               | Severity    | Priority  | Environment             | FR        | Steps to Reproduce                  | Expected Result                      | Actual Result | Attachments                | Notes / Risk Impact                     |
-|---------------|---------------------------------------|------------|-----------|------------------------|-----------|------------------------------------|--------------------------------------|---------------|---------------------------|----------------------------------------|
-| BUG-CAT-001   | Catalog grid not responsive           | Major      | High      | Chrome 118 / Windows 11 | FR-CAT-03 | 1. Open /catalog                   | Grid adjusts to viewport             | TBD           | TBD                       | High UX impact                          |
-| BUG-CAT-002   | Search returns incomplete results     | Major      | High      | Firefox 115 / Windows 11 | FR-CAT-02 | 1. Search for book title            | All relevant results displayed       | TBD           | TBD                       | Customer frustration risk               |
-| BUG-CAT-003   | "Buy Now" button does not route       | Critical   | High      | Edge 117 / Windows 11  | FR-CAT-04 | 1. Click "Buy Now"                  | Navigates to /cart                    | TBD           | TBD                       | Checkout blocked; high business impact |
-| BUG-CART-001  | Cart subtotal miscalculation          | Critical   | High      | Chrome 118 / Windows 11 | FR-CART-02 | 1. Add multiple items               | Subtotal calculated correctly         | TBD           | TBD                       | Financial accuracy risk                 |
-| BUG-CART-002  | Cart not persisting on reload          | Major      | High      | Firefox 115 / Windows 11 | FR-CART-03 | 1. Add item, reload page            | Items remain in cart                  | TBD           | TBD                       | Data integrity risk                      |
-| BUG-CART-003  | Remove item does not update subtotal   | Major      | Medium    | Edge 117 / Windows 11  | FR-CART-04 | 1. Remove item from cart            | Subtotal updates                       | TBD           | TBD                       | UX / financial risk                     |
-| BUG-PAY-001   | Paystack integration fails on checkout | Critical   | High      | Chrome 118 / Windows 11 | FR-PAY-02 | 1. Complete checkout                 | Payment completes successfully        | TBD           | TBD                       | High financial risk                     |
-| BUG-PAY-002   | Incorrect currency symbol displayed   | Major      | Medium    | Firefox 115 / Windows 11 | FR-PAY-02 | 1. Select USD currency               | Correct currency formatting           | TBD           | TBD                       | UX / user confusion                     |
-| BUG-PAY-003   | Payment verification stub not updating order | Major      | High | Edge 117 / Windows 11  | FR-PAY-03 | 1. Complete payment                  | Order status updated                  | TBD           | TBD                       | Transaction integrity risk              |
-| BUG-ADMIN-001 | Admin page accessible to non-admin    | Critical   | High      | Chrome 118 / Windows 11 | FR-ADMIN-01 | 1. Login as user                     | Access denied                         | TBD           | TBD                       | Security breach risk                     |
-| BUG-USER-001  | Session not persisting after reload    | Major      | Medium    | Firefox 115 / Windows 11 | FR-USER-01 | 1. Login, reload page                | Session maintained                     | TBD           | TBD                       | UX / data risk                           |
-| BUG-TECH-001  | React Router 404 on valid route        | Major      | Medium    | Edge 117 / Windows 11  | FR-TECH-01 | 1. Navigate to /orders/:id           | Order page loads                       | TBD           | TBD                       | Navigation flow risk                     |
+---
+
+## Overview  
+This document logs all defects identified during Phase 2 testing. Each entry corresponds directly to a failed or problematic test case listed in `test-cases.md`.  
+The goal is to document the issue details, traceability, and resolution progress for continuous quality assurance.
+
+---
+
+## Defect Log Table  
+
+| Defect ID | Related TC ID | Functional Requirement | Description | Steps to Reproduce | Expected Result | Actual Result | Severity | Status | Assigned To | Date Logged | Resolution |
+|------------|----------------|------------------------|--------------|--------------------|-----------------|----------------|-----------|----------|---------------|--------------|-------------|
+| D01 | TC05 | FR3 – View Books | Only 6 books visible despite DB having more entries | 1. Login as user<br>2. Open catalog | All available books displayed | Only 6 appear | High | Open | Dev Team | 2025-11-05 | Pending fix |
+| D02 | TC06 | FR4 – Search Book | Search not case-insensitive | 1. Search “react” vs “React” | Should show same results | “react” returns none | Medium | Open | Dev Team | 2025-11-05 | To be fixed in API |
+| D03 | TC08 | FR6 – Checkout | Payment confirmation slow | 1. Add to cart<br>2. Checkout | Payment processed instantly | 5–7s delay | Medium | In Progress | Backend | 2025-11-06 | Optimization ongoing |
+| D04 | TC09 | FR7 – Admin Login | Admin role not recognized after session refresh | 1. Login as admin<br>2. Refresh page | Should stay logged in | Redirects to login | High | Open | Auth Team | 2025-11-06 | Cookie issue under review |
+| D05 | TC10 | FR8 – Unauthorized Access | Unauthorized message lacks redirect | 1. Login as normal user<br>2. Go to /admin | Should redirect to home | Stays on error page | Low | Open | Frontend | 2025-11-06 | UI redirect planned |
+| D06 | TC11 | FR9 – Update Inventory | Stock count doesn’t update instantly | 1. Update stock<br>2. Save | New value visible immediately | Requires page refresh | Medium | Open | Frontend | 2025-11-06 | Trigger state refresh |
+| D07 | TC12 | FR10 – Manage Orders | Orders table doesn’t auto-refresh after update | 1. Complete new order<br>2. Open admin orders | New order appears instantly | Needs manual reload | Medium | In Progress | Dev Team | 2025-11-06 | Refresh event pending |
+| D08 | TC13 | FR11 – Edit Catalog | Add-book form allows blank price field | 1. Add new book<br>2. Leave price empty | Validation error shown | Book saved with null price | High | Open | Backend | 2025-11-07 | Validation fix needed |
+| D09 | TC14 | FR11 – Edit Catalog | Delete action has no confirmation dialog | 1. Click Delete | Confirmation prompt expected | Book deleted instantly | Low | Open | Frontend | 2025-11-07 | UX improvement planned |
+| D10 | TC15 | FR12 – Error Handling | Server errors not logged in console | 1. Simulate API error | Error logged in console | No logs shown | Medium | Open | Backend | 2025-11-07 | Log middleware pending |
+| D11 | TC03 | FR2 – User Login | “Remember me” checkbox not functional | 1. Tick “Remember me”<br>2. Login<br>3. Refresh page | Session should persist | User logged out | Medium | Open | Auth Team | 2025-11-07 | LocalStorage logic fix |
+| D12 | TC01 | FR1 – User Registration | Password strength not validated | 1. Register weak password | Should reject weak passwords | Accepted weak password | Medium | Open | Backend | 2025-11-07 | Validation rule to be added |
+
+---
+
+## Notes  
+- All defects are tracked in alignment with their respective **Test Case IDs** for traceability.  
+- Screenshots, console logs, and videos are stored under `/tests/evidence/defects/`.  
+- Severity levels follow standard QA classification: **Low**, **Medium**, **High**, **Critical**.  
+- Status values used: **Open**, **In Progress**, **Resolved**, **Closed**.  
+- Fix verification will be re-tested and documented in **Phase 3 Regression Tests**.
+
+---
+

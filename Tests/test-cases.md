@@ -1,19 +1,58 @@
-#  Test Cases — Book Store App
+# Test Cases — Book Store App (Phase 2)
 
-| ID | Feature Area | Title | Pre-conditions | Steps | Expected Result | Post-conditions | Priority | Severity | Evidence |
-|----|--------------|-------|----------------|-------|----------------|-----------------|----------|----------|----------|
-| TC-CAT-01 | Catalog & Discovery | Browse Catalog | App running; user on /catalog | 1. Open /catalog page<br>2. Scroll through book grid | All books load correctly; images visible; responsive layout | None | High | Major | tests/evidence/TC-CAT-01.png |
-| TC-CAT-02 | Catalog & Discovery | Search by Title | App running; user on /catalog | 1. Enter book title in search<br>2. Press Enter | Only matching books appear; no errors | None | High | Major | tests/evidence/TC-CAT-02.png |
-| TC-CART-01 | Cart Management | Add Item to Cart | User on /catalog | 1. Click "Buy Now" on a book | Book added to cart; cart count updated | Cart updated in localStorage | High | Critical | tests/evidence/TC-CART-01.png |
-| TC-CART-02 | Cart Management | Update Quantity | Item in cart | 1. Go to /cart<br>2. Increase quantity | Subtotal updated correctly; cart persists | localStorage updated | Medium | Major | tests/evidence/TC-CART-02.png |
-| TC-CART-03 | Cart Management | Remove Item | Item in cart | 1. Go to /cart<br>2. Remove item | Item disappears; subtotal updated | localStorage updated | Medium | Major | tests/evidence/TC-CART-03.png |
-| TC-PAY-01 | Checkout & Payments | Checkout Flow | Items in cart; user logged in | 1. Go to /checkout<br>2. Complete form<br>3. Submit | Order confirmation shown; localStorage updated | Order saved in localStorage | High | Critical | tests/evidence/TC-PAY-01.png |
-| TC-PAY-02 | Checkout & Payments | Paystack Payment | Items in cart; checkout page loaded | 1. Click "Pay"<br>2. Complete sandbox flow | Payment processed; confirmation visible | GatewayRef saved | High | Critical | tests/evidence/TC-PAY-02.png |
-| TC-ADMIN-01 | Admin | Access Admin Page | User logged in as admin | 1. Go to /admin | Admin page loads | None | Medium | Major | tests/evidence/TC-ADMIN-01.png |
-| TC-ADMIN-02 | Admin | Unauthorized Access | User logged in as non-admin | 1. Go to /admin | Access denied; redirect | None | High | Major | tests/evidence/TC-ADMIN-02.png |
-| TC-USER-01 | User & Session | localStorage Persistence | User has active session | 1. Refresh page | Cart and session persist | Data unchanged in localStorage | Medium | Major | tests/evidence/TC-USER-01.png |
-| TC-TECH-01 | Routing | Navigate Pages | App running | 1. Go to /catalog<br>2. Navigate to /cart<br>3. Navigate to /checkout | Correct pages load; URL updates | None | Medium | Minor | tests/evidence/TC-TECH-01.png |
-| TC-A11Y-01 | Accessibility | Keyboard Navigation | App running | 1. Use Tab to navigate<br>2. Use Enter to activate buttons | Focus moves logically; interactive elements accessible | None | High | Critical | tests/evidence/TC-A11Y-01.png |
-| TC-A11Y-02 | Accessibility | Screen Reader | App running | 1. Enable NVDA/VoiceOver<br>2. Navigate catalog and cart | All announcements meaningful; ARIA labels correct | None | High | Critical | tests/evidence/TC-A11Y-02.png |
-| TC-PERF-01 | Performance | LCP Measurement | App running | 1. Load /catalog | LCP ≤ 2.5s on desktop | None | High | Major | tests/evidence/TC-PERF-01.png |
-| TC-PERF-02 | Performance | Checkout TTI | App running; items in cart | 1. Go to /checkout | TTI ≤ 1s for critical interactions | None | High | Major | tests/evidence/TC-PERF-02.png |
+**Project:** Book Store App QA  
+**Phase:** 2 — Test Design & Early Execution  
+**Date:** November 8, 2025  
+**Execution Mode:** Manual  
+**Evidence Folder:** `tests/evidence/`  
+**Prepared by:** Risk Analyst  
+
+---
+
+## Overview
+This document contains the detailed manual test cases designed for Phase 2 of the Book Store App QA project.  
+Each case is traceable to its corresponding **Functional Requirement (FR)** and covers core functional, accessibility, and performance aspects defined in the FR document.  
+
+---
+
+## Assumptions
+- Test data is seeded with **6 books** in the catalog.  
+- The app runs locally using `npm start`.  
+- Admin access is managed via `localStorage.user.role = 'admin'`.  
+- No real payment or backend integration is used.  
+- Browser under test: Firefox on Kali Linux.
+
+---
+
+##  Test Cases Table
+> Each test case includes preconditions, detailed steps, expected and post-conditions, mapped FR codes, and severity/priority indicators.  
+> Evidence paths refer to screenshots, GIFs, or logs captured in the `tests/evidence` directory.
+
+| **Test Case ID** | **Title** | **FR Code(s)** | **Pre-Conditions** | **Steps** | **Expected Result** | **Post-Conditions** | **Severity** | **Priority** | **Evidence** |
+|------------------|------------|----------------|--------------------|------------|---------------------|---------------------|--------------|--------------|---------------|
+| TC-CAT-01 | Search for book by title | FR-O01 | App loaded with seeded data | 1. Open home page  2. Type “harry” in search 3. Press Enter | Matching titles appear | Results visible | Minor | High | evidence/TC-CAT-01.png |
+| TC-CAT-02 | Filter by genre | FR-O01 | Same as above | 1. Open filter panel 2. Select “Fiction” | Only Fiction books displayed | Filter retained on refresh | Minor | Medium | evidence/TC-CAT-02.png |
+| TC-CAT-03 | Sort by rating | FR-O01 | Filter cleared | 1. Choose “Sort by rating desc” | Books reorder by rating | Sort indicator active | Minor | Medium | evidence/TC-CAT-03.png |
+| TC-CHK-01 | Add to cart | FR-O01 | User on catalog page | 1. Click Add to Cart on a book | Cart count increases | Item stored | Major | High | evidence/TC-CHK-01.gif |
+| TC-CHK-02 | Exceed stock quantity | FR-O01 | Item added | 1. Increase qty past stock limit | Error shown; qty unchanged | Stock unchanged | Major | High | evidence/TC-CHK-02.png |
+| TC-CHK-03 | Apply valid coupon | FR-O02 | Cart > ₦500 | 1. Enter “SAVE10” 2. Apply | 10% discount shown | Discount persisted | Major | High | evidence/TC-CHK-03.png |
+| TC-CHK-04 | Apply expired coupon | FR-O02 | Cart ready | 1. Enter “OLD20” 2. Apply | Coupon rejected | None | Minor | Medium | evidence/TC-CHK-04.png |
+| TC-PAY-01 | Pay with Paystack | FR-O03 | Valid cart | 1. Proceed checkout 2. Fill form 3. Select Paystack | Payment modal opens | Pending→Paid | Critical | High | evidence/TC-PAY-01.gif |
+| TC-PAY-02 | Cancel payment | FR-O03 | Payment modal open | 1. Close gateway | Message shown “Payment cancelled” | Order = Pending | Major | Medium | evidence/TC-PAY-02.png |
+| TC-ORD-01 | View order history | FR-O04 | User completed purchase | 1. Navigate Orders | Orders listed with statuses | Viewable | Minor | Low | evidence/TC-ORD-01.png |
+| TC-RVW-01 | Review without purchase | FR-U01 | Logged in user | 1. Open book 2. Submit review | Error “Purchase required” | No review saved | Minor | Medium | evidence/TC-RVW-01.png |
+| TC-RVW-02 | Safe markdown sanitization | FR-U03 | Reviewer form | 1. Add `[Click](javascript:alert(1))` | Script blocked | Sanitized text only | Critical | High | evidence/TC-RVW-02.png |
+| TC-ADM-01 | Access admin page unauthorized | FR-M01 | Non-admin user | 1. Go to /admin | Unauthorized message displayed | No access | Major | High | evidence/TC-ADM-01.png |
+| TC-NOT-01 | Mark all notifications read | FR-N02 | Notifications exist | 1. Click “Mark all read” | Badge resets to 0 (intentional defect) | Defect observable | Minor | Medium | evidence/TC-NOT-01.gif |
+
+---
+
+##  Notes
+- All evidence is stored in `tests/evidence/` following the naming convention `TC-<area>-<id>.<ext>`.  
+- Severity levels: **Critical**, **Major**, **Minor**, **Cosmetic**.  
+- Priority levels: **High**, **Medium**, **Low**.  
+- Intentional defects (e.g., FR-N02 badge update) are logged in the corresponding `defect-log.md`.  
+- Linked to Github Projects for traceability (FR–TC–Bug mapping).  
+
+---
+
