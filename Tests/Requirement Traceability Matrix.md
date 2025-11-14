@@ -49,7 +49,7 @@
 ## 🧪 **New Test Cases (Uncovered Functional Requirements)**
 
 > These **10 new test cases** extend coverage for areas not included in the Phase 2 document.
-> Format follows existing table conventions.
+
 
 | **Test Case ID** | **Title**                                    | **FR Code(s)** | **Pre-Conditions**        | **Steps**                                              | **Expected Result**                   | **Post-Conditions**                | **Severity** | **Priority** | **Evidence**            |
 | ---------------- | -------------------------------------------- | -------------- | ------------------------- | ------------------------------------------------------ | ------------------------------------- | ---------------------------------- | ------------ | ------------ | ----------------------- |
