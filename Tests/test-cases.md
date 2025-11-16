@@ -27,6 +27,7 @@ Each case is traceable to its corresponding **Functional Requirement (FR)** and 
 ##  Test Cases Table
 > Each test case includes preconditions, detailed steps, expected and post-conditions, mapped FR codes, and severity/priority indicators.  
 > Evidence paths refer to screenshots, GIFs, or logs captured in the `tests/evidence` directory.
+
 | **Test Case ID** | **Title** | **FR Code(s)** | **Pre-Conditions** | **Steps** | **Expected Result** | **Post-Conditions** | **Severity** | **Priority** | **Evidence** |
 |------------------|------------|----------------|--------------------|------------|---------------------|---------------------|--------------|--------------|---------------|
 | TC-CAT-01 | Search for book by title | FR-O01 | App loaded with seeded data | 1. Open home page  2. Type “harry” in search 3. Press Enter | Matching titles appear | Results visible | Minor | High | evidence/TC-CAT-01.png |
