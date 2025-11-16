@@ -27,7 +27,6 @@ Each case is traceable to its corresponding **Functional Requirement (FR)** and 
 ##  Test Cases Table
 > Each test case includes preconditions, detailed steps, expected and post-conditions, mapped FR codes, and severity/priority indicators.  
 > Evidence paths refer to screenshots, GIFs, or logs captured in the `tests/evidence` directory.
-
 | **Test Case ID** | **Title** | **FR Code(s)** | **Pre-Conditions** | **Steps** | **Expected Result** | **Post-Conditions** | **Severity** | **Priority** | **Evidence** |
 |------------------|------------|----------------|--------------------|------------|---------------------|---------------------|--------------|--------------|---------------|
 | TC-CAT-01 | Search for book by title | FR-O01 | App loaded with seeded data | 1. Open home page  2. Type “harry” in search 3. Press Enter | Matching titles appear | Results visible | Minor | High | evidence/TC-CAT-01.png |
@@ -44,8 +43,17 @@ Each case is traceable to its corresponding **Functional Requirement (FR)** and 
 | TC-RVW-02 | Safe markdown sanitization | FR-U03 | Reviewer form | 1. Add `[Click](javascript:alert(1))` | Script blocked | Sanitized text only | Critical | High | evidence/TC-RVW-02.png |
 | TC-ADM-01 | Access admin page unauthorized | FR-M01 | Non-admin user | 1. Go to /admin | Unauthorized message displayed | No access | Major | High | evidence/TC-ADM-01.png |
 | TC-NOT-01 | Mark all notifications read | FR-N02 | Notifications exist | 1. Click “Mark all read” | Badge resets to 0 (intentional defect) | Defect observable | Minor | Medium | evidence/TC-NOT-01.gif |
-
----
+| TC-CAT-04 | Validate empty search | FR-O01 | Catalog loaded | 1. Leave search bar empty 2. Press Enter | Full list displayed | No filter applied | Minor | Low | evidence/TC-CAT-04.png |
+| TC-CAT-05 | Search for non-existent book | FR-O01 | Catalog loaded | 1. Search “dragonfruit temple” | “No results” message appears | Empty-state displayed | Minor | Low | evidence/TC-CAT-05.png |
+| TC-A11Y-01 | Keyboard navigation of catalog | FR-A11Y01 | Keyboard only | 1. Tab through items | Focus visible on elements | Navigation successful | Minor | Medium | evidence/TC-A11Y-01.gif |
+| TC-A11Y-02 | Screen reader labels | FR-A11Y02 | Screen reader on | 1. Hover product cards | ARIA alt text read out | Accessible | Minor | Medium | evidence/TC-A11Y-02.mp3 |
+| TC-PERF-01 | Catalog load time < 3s | FR-P01 | Fresh reload | 1. Open homepage | Catalog renders under 3 sec | Timer recorded | Major | High | evidence/TC-PERF-01.png |
+| TC-PERF-02 | Cart update response < 1s | FR-P02 | Cart with items | 1. Increase qty | Qty updates quickly | Timer logged | Major | High | evidence/TC-PERF-02.png |
+| TC-SEC-01 | Block admin access via manual role edit | FR-M01 | User logged | 1. Change role in DevTools to “admin” | Unauthorized remains | Secure | Critical | High | evidence/TC-SEC-01.png |
+| TC-SEC-02 | Coupon input validation (script injection) | FR-U03 | Cart loaded | 1. Insert `<script>alert(1)</script>` | Script removed | Safe | Critical | High | evidence/TC-SEC-02.png |
+| TC-UAC-01 | Logout clears user session | FR-UAC01 | Logged in | 1. Logout | localStorage cleared | User = guest | Major | High | evidence/TC-UAC-01.png |
+| TC-ORD-02 | Order filter by status | FR-O04 | Orders available | 1. Filter “Completed” | Only completed shown | Filter persists | Minor | Medium | evidence/TC-ORD-02.png |
+| TC-RVW-03 | Edit existing review | FR-U01 | Review exists | 1. Edit review text | Updated review saved | Previous replaced | Minor | Medium | evidence/TC-RVW-03.png |
 
 ##  Notes
 - All evidence is stored in `tests/evidence/` following the naming convention `TC-<area>-<id>.<ext>`.  
