@@ -372,7 +372,8 @@ The following table shows how key requirements were validated through testing:
 
 *Note: Performance budgets are generally met but can degrade on very slow networks.
 
-Show Image
+<img width="1174" height="867" alt="image" src="https://github.com/user-attachments/assets/e9c05caa-cf21-44ab-be00-04daf857efeb" />
+
 
 ---
 
