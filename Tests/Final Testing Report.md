@@ -224,7 +224,9 @@ A total of 12 defects were identified during the testing cycle, categorized by s
 | Low         | 2        | 2         | 0        |
 | **Total**   | **12**   | **9**     | **3**    |
 
-Show Image
+
+![Defect Summary Chart](Tests/evidence/defect_summary_chart.png)
+
 
 ### 5.2 Critical Defects (All Resolved)
 
@@ -239,7 +241,7 @@ Show Image
 - **Root Cause**: Suspected issue with session cookie or localStorage persistence logic.
 - **Mitigation Plan**: A hotfix is required before production release. Users must avoid refreshing the admin page.
 
-Show Image
+![Admin Role](Tests/evidence/admin_role.png)
 
 ### 5.4 Defect Trend Analysis
 
@@ -251,7 +253,8 @@ The defect discovery rate decreased significantly in the final week of testing, 
 
 The declining trend in defect discovery suggests the application is maturing and reaching a stable state for release.
 
-Show Image
+![Defect Distribution Across Phases](Tests/evidence/defect_distribution.png)
+
 
 ## 6. Platform Details
 
