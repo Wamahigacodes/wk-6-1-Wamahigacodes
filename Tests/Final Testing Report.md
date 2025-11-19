@@ -225,7 +225,7 @@ A total of 12 defects were identified during the testing cycle, categorized by s
 | **Total**   | **12**   | **9**     | **3**    |
 
 
-![Defect Summary Chart](Tests/evidence/defect_summary_chart.png)
+![Defect Summary Chart](evidence/defect_summary_chart.png)
 
 
 ### 5.2 Critical Defects (All Resolved)
@@ -241,7 +241,7 @@ A total of 12 defects were identified during the testing cycle, categorized by s
 - **Root Cause**: Suspected issue with session cookie or localStorage persistence logic.
 - **Mitigation Plan**: A hotfix is required before production release. Users must avoid refreshing the admin page.
 
-![Admin Role](Tests/evidence/admin_role.png)
+![Admin Role](evidence/admin_role.png)
 
 ### 5.4 Defect Trend Analysis
 
