@@ -253,7 +253,7 @@ The defect discovery rate decreased significantly in the final week of testing, 
 
 The declining trend in defect discovery suggests the application is maturing and reaching a stable state for release.
 
-![Defect Distribution Across Phases](Tests/evidence/defect_distribution.png)
+![Defect Distribution Across Phases](evidence/defect_distribution.png)
 
 
 ## 6. Platform Details
